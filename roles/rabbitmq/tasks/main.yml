@@ -6,8 +6,8 @@
       apiVersion: v1
       kind: ServiceAccount
       metadata:
-        name: '{{ meta.name }}-rabbitmq'
-        namespace: '{{ meta.namespace }}'
+        name: rabbitmq
+        namespace: doosra-vpc
 
 - name: Add rbac
   k8s:
@@ -15,8 +15,8 @@
       kind: Role
       apiVersion: rbac.authorization.k8s.io/v1beta1
       metadata:
-        name: endpoint-reader
-        namespace: '{{ meta.namespace }}'
+        name: rabbitmq
+        namespace: doosra-vpc
       rules:
       - apiGroups: [""]
         resources: ["endpoints"]
@@ -28,15 +28,15 @@
       kind: RoleBinding
       apiVersion: rbac.authorization.k8s.io/v1beta1
       metadata:
-        name: endpoint-reader
-        namespace: '{{ meta.namespace }}'
+        name: rabbitmq
+        namespace: doosra-vpc
       subjects:
       - kind: ServiceAccount
         name: '{{ meta.name }}-rabbitmq'
       roleRef:
         apiGroup: rbac.authorization.k8s.io
         kind: Role
-        name: endpoint-reader
+        name: rabbitmq
 
 - name: Add service
   k8s:
@@ -44,7 +44,7 @@
       kind: Service
       apiVersion: v1
       metadata:
-        namespace: '{{ meta.namespace }}'
+        namespace: doosra-vpc
         name: rabbitmq
         labels:
           app: rabbitmq
@@ -70,7 +70,7 @@
       kind: ConfigMap
       metadata:
         name: rabbitmq-config
-        namespace: '{{ meta.namespace }}'
+        namespace: doosra-vpc
       data:
         RABBIT_ENV_RABBITMQ_USER: "guest"
         RABBIT_ENV_RABBITMQ_PASSWORD: "guest"
@@ -99,82 +99,82 @@
             queue_master_locator=min-masters
             ## See http://www.rabbitmq.com/access-control.html#loopback-users
             loopback_users.guest = false
+- name: add secrets
+  k8s:
+    definition:
+      apiVersion: v1
+      data:
+        .dockercfg: eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJhc3dhZHdjIiwicGFzc3dvcmQiOiJuZXRvcmNhZ2VudEB3YW5jbG91ZHMjbmV0b3JjIiwiZW1haWwiOiJhc3dhZEB3YW5jbG91ZHMubmV0IiwiYXV0aCI6IllYTjNZV1IzWXpwdVpYUnZjbU5oWjJWdWRFQjNZVzVqYkc5MVpITWpibVYwYjNKaiJ9fQ==
+      kind: Secret
+      metadata:
+        creationTimestamp: 2018-01-02T09:48:18Z
+        name: docker-hub-secret
+        namespace: doosra-vpc
+        resourceVersion: "1863026"
+        selfLink: /api/v1/namespaces/doosra-vpc/secrets/docker-hub-secret
+        uid: 0fc221e0-efa2-11e7-b806-6248ff66fd54
+      type: kubernetes.io/dockercfg
 
 - name: Add sts
   k8s:
     definition:
-      apiVersion: apps/v1beta1
+      apiVersion: apps/v1
       kind: StatefulSet
       metadata:
         name: rabbitmq
-        namespace: '{{ meta.namespace }}'
+        namespace: doosra-vpc
       spec:
         serviceName: rabbitmq
-        replicas: "{{size}}"
+        replicas: 3
+        selector:
+          matchLabels:
+            app: rabbitmq
         template:
           metadata:
             labels:
               app: rabbitmq
           spec:
-            serviceAccountName: '{{ meta.name }}-rabbitmq'
+            serviceAccountName: rabbitmq
             terminationGracePeriodSeconds: 10
             containers:
-            - name: rabbitmq-k8s
-              image: rabbitmq:3.7
-              volumeMounts:
-                - name: config-volume
-                  mountPath: /etc/rabbitmq
-              ports:
-                - name: http
-                  protocol: TCP
-                  containerPort: 15672
-                - name: amqp
-                  protocol: TCP
-                  containerPort: 5672
-              livenessProbe:
-                exec:
-                  command: ["rabbitmqctl", "status"]
-                initialDelaySeconds: 30
-                # See https://www.rabbitmq.com/monitoring.html for monitoring frequency recommendations.
-                periodSeconds: 60
-                timeoutSeconds: 10
-              readinessProbe:
-                exec:
-                  command: ["rabbitmqctl", "status"]
-                initialDelaySeconds: 10
-                periodSeconds: 60
-                timeoutSeconds: 5
-              imagePullPolicy: Always
-              env:
-                - name: MY_POD_IP
-                  valueFrom:
-                    fieldRef:
-                      fieldPath: status.podIP
-                - name: RABBITMQ_USE_LONGNAME
-                  value: "true"
-                # See a note on cluster_formation.k8s.address_type in the config file section
-                - name: RABBITMQ_NODENAME
-                  value: "rabbit@$(MY_POD_IP)"
-                - name: K8S_SERVICE_NAME
-                  value: "rabbitmq"
-                - name: RABBITMQ_ERLANG_COOKIE
-                  value: "mycookie"
-                - name: AUTOCLUSTER_TYPE
-                  value: "k8s"
-                - name: AUTOCLUSTER_DELAY
-                  value: "10"
-                - name: K8S_ADDRESS_TYPE
-                  value: "ip"
-                - name: AUTOCLUSTER_CLEANUP
-                  value: "true"
-                - name: CLEANUP_WARN_ONLY
-                  value: "false"
-            volumes:
-              - name: config-volume
-                configMap:
-                  name: rabbitmq-config
-                  items:
-                  - key: rabbitmq.conf
-                    path: rabbitmq.conf
-                  - key: enabled_plugins
-                    path: enabled_plugins
+              - name: rabbitmq-autocluster
+                image: wancloudsinc/rabbitmq
+                ports:
+                  - name: http
+                    protocol: TCP
+                    containerPort: 15672
+                  - name: amqp
+                    protocol: TCP
+                    containerPort: 5672
+                livenessProbe:
+                  exec:
+                    command: ["rabbitmqctl", "status"]
+                  initialDelaySeconds: 30
+                  timeoutSeconds: 5
+                readinessProbe:
+                  exec:
+                    command: ["rabbitmqctl", "status"]
+                  initialDelaySeconds: 10
+                  timeoutSeconds: 5
+                imagePullPolicy: Always
+                env:
+                  - name: MY_POD_IP
+                    valueFrom:
+                      fieldRef:
+                        fieldPath: status.podIP
+                  - name: RABBITMQ_USE_LONGNAME
+                    value: "true"
+                  - name: RABBITMQ_NODENAME
+                    value: "rabbit@$(MY_POD_IP)"
+                  - name: AUTOCLUSTER_TYPE
+                    value: "k8s"
+                  - name: AUTOCLUSTER_DELAY
+                    value: "10"
+                  - name: K8S_ADDRESS_TYPE
+                    value: "ip"
+                  - name: AUTOCLUSTER_CLEANUP
+                    value: "true"
+                  - name: CLEANUP_WARN_ONLY
+                    value: "false"
+            imagePullSecrets:
+              - name: docker-hub-secret

@@ -2,4 +2,4 @@
 - version: v1alpha1
   group: rabbitmq.olibre.io
   kind: Rabbitmq
-  role: rabbitmq
+  role: roles/rabbitmq

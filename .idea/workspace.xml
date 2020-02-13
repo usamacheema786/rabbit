@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e0221068-2be8-4ace-8cdd-f5163d07d058" name="Default Changelist" comment="" />
+    <list default="true" id="e0221068-2be8-4ace-8cdd-f5163d07d058" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/build/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/crds/rabbitmq.olibre.io_rabbitmqs_crd.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/crds/rabbitmq.olibre.io_rabbitmqs_crd.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/crds/rabbitmq.olibre.io_v1alpha1_rabbitmq_cr.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/crds/rabbitmq.olibre.io_v1alpha1_rabbitmq_cr.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/operator.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/operator.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/role.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/role.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/role_binding.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/role_binding.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/service_account.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/service_account.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/rabbitmq/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/rabbitmq/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/watches.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/watches.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1XioYx8qL7qiDnPAy9239phdu1k" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />

@@ -3,6 +3,7 @@ kind: Role
 metadata:
   creationTimestamp: null
   name: rabbitmq-operator
+  namespace: doosra-vpc
 rules:
 - apiGroups:
   - ""
