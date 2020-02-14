@@ -68,7 +68,7 @@ rules:
   verbs:
   - get
 - apiGroups:
-  - indeed.com
+  - rabbitmq.olibre.io
   resources:
   - '*'
   verbs:

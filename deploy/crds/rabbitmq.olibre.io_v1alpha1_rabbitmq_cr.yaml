@@ -1,4 +1,4 @@
-apiVersion: indeed.com/v1alpha1
+apiVersion: rabbitmq.olibre.io/v1alpha1
 kind: Rabbitmq
 metadata:
   name: rabbitmq

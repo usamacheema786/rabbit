@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e0221068-2be8-4ace-8cdd-f5163d07d058" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/build/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/crds/rabbitmq.olibre.io_rabbitmqs_crd.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/crds/rabbitmq.olibre.io_rabbitmqs_crd.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/crds/rabbitmq.olibre.io_v1alpha1_rabbitmq_cr.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/crds/rabbitmq.olibre.io_v1alpha1_rabbitmq_cr.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/role.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/role.yaml" afterDir="false" />
@@ -52,9 +51,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1057" y="264" width="863" height="646" key="find.popup" timestamp="1581657999366">
+    <state x="1019" y="267" width="863" height="646" key="find.popup" timestamp="1581666385920">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="1057" y="264" width="863" height="646" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1581657999366" />
+    <state x="1019" y="267" width="863" height="646" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1581666385920" />
   </component>
 </project>
