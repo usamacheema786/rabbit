@@ -2,7 +2,7 @@
 - name: Build Operator in Kubernetes docker container
   hosts: k8s
   vars:
-    image: rabbitmq.olibre.io/rabbitmq-operator:testing
+    image: indeed.com/rabbitmq-operator:testing
 
   tasks:
     # using command so we don't need to install any dependencies
@@ -23,7 +23,7 @@
   hosts: localhost
   connection: local
   vars:
-    image: rabbitmq.olibre.io/rabbitmq-operator:testing
+    image: indeed.com/rabbitmq-operator:testing
     operator_template: "{{ '/'.join([template_dir, 'operator.yaml.j2']) }}"
 
   tasks:

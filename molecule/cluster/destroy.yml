@@ -27,6 +27,6 @@
 
     - name: Delete Custom Resource Definition
       k8s:
-        definition: "{{ lookup('file', '/'.join([deploy_dir, 'crds/rabbitmq.olibre.io_rabbitmqs_crd.yaml'])) }}"
+        definition: "{{ lookup('file', '/'.join([deploy_dir, 'crds/indeed.com_rabbitmqs_crd.yaml'])) }}"
         state: absent
         wait: yes

@@ -5,10 +5,10 @@
   connection: local
   gather_facts: no
   vars:
-    custom_resource: "{{ lookup('template', '/'.join([deploy_dir, 'crds/rabbitmq.olibre.io_v1alpha1_rabbitmq_cr.yaml'])) | from_yaml }}"
+    custom_resource: "{{ lookup('template', '/'.join([deploy_dir, 'crds/indeed.com_v1alpha1_rabbitmq_cr.yaml'])) | from_yaml }}"
 
   tasks:
-    - name: Create the rabbitmq.olibre.io/v1alpha1.Rabbitmq and wait for reconciliation to complete
+    - name: Create the indeed.com/v1alpha1.Rabbitmq and wait for reconciliation to complete
       k8s:
         state: present
         namespace: '{{ namespace }}'

@@ -32,7 +32,7 @@
         namespace: doosra-vpc
       subjects:
       - kind: ServiceAccount
-        name: '{{ meta.name }}-rabbitmq'
+        name: rabbitmq
       roleRef:
         apiGroup: rbac.authorization.k8s.io
         kind: Role

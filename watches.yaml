@@ -1,5 +1,5 @@
 ---
 - version: v1alpha1
-  group: rabbitmq.olibre.io
+  group: indeed.com
   kind: Rabbitmq
-  role: roles/rabbitmq
+  role: rabbitmq
