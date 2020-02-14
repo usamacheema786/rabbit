@@ -68,7 +68,7 @@ rules:
   verbs:
   - get
 - apiGroups:
-  - rabbitmq.olibre.io
+  - github.com
   resources:
   - '*'
   verbs:
