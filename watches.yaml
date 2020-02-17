@@ -1,5 +1,5 @@
 ---
 - version: v1
-  group: github.com
+  group: rabbitmq.ansible-operator.com
   kind: Rabbitmq
-  role: /opt/ansible/rabbitmq
+  role: /opt/ansible/roles/rabbitmq

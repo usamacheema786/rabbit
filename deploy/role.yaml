@@ -3,7 +3,6 @@ kind: Role
 metadata:
   creationTimestamp: null
   name: rabbitmq-operator
-  namespace: doosra-vpc
 rules:
 - apiGroups:
   - ""
@@ -68,7 +67,7 @@ rules:
   verbs:
   - get
 - apiGroups:
-  - github.com
+  - rabbitmq.ansible-operator.com
   resources:
   - '*'
   verbs:

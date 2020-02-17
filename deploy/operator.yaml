@@ -3,7 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rabbitmq-operator
-  namespace: doosra-vpc
 spec:
   replicas: 1
   selector:
@@ -22,7 +21,7 @@ spec:
           - /tmp/ansible-operator/runner
           - stdout
           # Replace this with the built image name
-          image: "usamacheema5740/myrepo:rabbit"
+          image: "REPLACE_IMAGE"
           imagePullPolicy: "Always"
           volumeMounts:
           - mountPath: /tmp/ansible-operator/runner
@@ -30,7 +29,7 @@ spec:
             readOnly: true
         - name: operator
           # Replace this with the built image name
-          image: "usamacheema5740/myrepo:rabbit"
+          image: "REPLACE_IMAGE"
           imagePullPolicy: "Always"
           volumeMounts:
           - mountPath: /tmp/ansible-operator/runner
