@@ -20,16 +20,14 @@ spec:
           - /usr/local/bin/ao-logs
           - /tmp/ansible-operator/runner
           - stdout
-          # Replace this with the built image name
-          image: "REPLACE_IMAGE"
+          image: "wancloudsinc/rabbitmq:operator"
           imagePullPolicy: "Always"
           volumeMounts:
           - mountPath: /tmp/ansible-operator/runner
             name: runner
             readOnly: true
         - name: operator
-          # Replace this with the built image name
-          image: "REPLACE_IMAGE"
+          image: "wancloudsinc/rabbitmq:operator"
           imagePullPolicy: "Always"
           volumeMounts:
           - mountPath: /tmp/ansible-operator/runner
@@ -47,6 +45,8 @@ spec:
               value: "rabbitmq-operator"
             - name: ANSIBLE_GATHERING
               value: explicit
+      imagePullSecrets:
+        - name: docker-hub-secret
       volumes:
         - name: runner
           emptyDir: {}

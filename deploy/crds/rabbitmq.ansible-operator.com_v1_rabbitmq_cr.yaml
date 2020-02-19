@@ -1,7 +1,6 @@
 apiVersion: rabbitmq.ansible-operator.com/v1
 kind: Rabbitmq
 metadata:
-  name: example-rabbitmq
+  name: rabbitmq
 spec:
-  # Add fields here
   size: 3
